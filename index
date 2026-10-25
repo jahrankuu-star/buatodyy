@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Semangat Odyy!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF0F3; --bg2:#FFE0E8; --ink:#5B3A4A; --soft:#8A6575;
+  --pink:#FF8FAB; --pink-d:#E5698B; --butter:#FFE29A; --lav:#CDB4F6;
+  --card:#FFFFFF; --fur:#F7B267; --fur2:#FFFFFF; --line:#5B3A4A;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#2B1B26; --bg2:#3A2433; --ink:#FFE9EF; --soft:#D9B5C4;
+    --pink:#FF8FAB; --pink-d:#FFB3C7; --butter:#FFE29A; --lav:#B79AF0;
+    --card:#3F2A37; --fur:#F7B267; --fur2:#FFF3E6; --line:#FFE9EF;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2B1B26; --bg2:#3A2433; --ink:#FFE9EF; --soft:#D9B5C4;
+  --pink-d:#FFB3C7; --lav:#B79AF0; --card:#3F2A37; --fur2:#FFF3E6; --line:#FFE9EF;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; color:var(--ink);
+  font-family:"Fredoka",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, var(--bg2) 0 18%, transparent 19%),
+    radial-gradient(circle at 90% 85%, var(--bg2) 0 22%, transparent 23%),
+    var(--bg);
+  background-color:var(--bg);
+  overflow-x:hidden; text-align:center;
+}
+main{max-width:640px; margin:0 auto; padding:28px 20px 64px; position:relative}
+.paws{position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0}
+.paws span{position:absolute; font-size:26px; opacity:.28; transform:rotate(var(--r))}
+section,header,footer{position:relative; z-index:1}
+
+.sign{
+  display:inline-block; margin-top:8px; padding:18px 30px 20px;
+  background:var(--card); border:4px solid var(--line); border-radius:28px;
+  box-shadow:0 8px 0 var(--pink);
+  transform:rotate(-2deg);
+}
+.sign h1{
+  margin:0; font-weight:700; font-size:clamp(40px,12vw,72px); line-height:1;
+  color:var(--pink-d); letter-spacing:.5px; text-transform:lowercase;
+}
+.sign p{margin:8px 0 0; color:var(--soft); font-size:17px}
+
+.stage{position:relative; width:min(320px,80vw); margin:-6px auto 0}
+.stage svg{width:100%; height:auto; display:block; cursor:pointer; -webkit-tap-highlight-color:transparent}
+.hint{margin:4px 0 0; color:var(--soft); font-size:15px}
+
+.cat .tail{transform-origin:228px 200px; animation:tail 2.4s ease-in-out infinite}
+.cat .paw{transform-origin:196px 170px; animation:wave 1.6s ease-in-out infinite}
+.cat .eye{transform-origin:center; transform-box:fill-box; animation:blink 5s infinite}
+@keyframes tail{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(10deg)}}
+@keyframes wave{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(14deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.cat.purr{animation:wiggle .5s ease}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+
+.msg{
+  margin:22px auto 0; padding:22px 22px 24px; background:var(--card);
+  border:3px solid var(--line); border-radius:24px; box-shadow:0 6px 0 var(--lav);
+  max-width:520px; text-align:left;
+}
+.msg .t{margin:0; font-size:clamp(20px,5.4vw,26px); line-height:1.4; font-weight:500; min-height:4.2em}
+.btn{
+  margin-top:16px; font:inherit; font-weight:700; font-size:18px; cursor:pointer;
+  color:#5B3A4A; background:var(--butter); border:3px solid var(--line); border-radius:999px;
+  padding:12px 26px; box-shadow:0 5px 0 var(--line); transition:transform .08s, box-shadow .08s;
+}
+.btn:active{transform:translateY(4px); box-shadow:0 1px 0 var(--line)}
+.btn:focus-visible,.stage svg:focus-visible{outline:4px solid var(--lav); outline-offset:4px}
+.count{margin:12px 0 0; color:var(--soft); font-size:15px}
+
+.list{margin:34px auto 0; max-width:520px; display:grid; gap:12px; text-align:left}
+.list div{
+  display:flex; gap:14px; align-items:center; padding:14px 18px;
+  background:var(--card); border:3px solid var(--line); border-radius:20px;
+  font-size:18px; line-height:1.35;
+}
+.list div:nth-child(2){margin-left:18px}
+.list div:nth-child(3){margin-right:18px}
+.list b{font-size:28px; flex:none}
+
+footer{margin-top:44px; color:var(--soft); font-size:17px}
+footer .cats{display:flex; justify-content:center; gap:10px; margin-bottom:10px}
+footer svg{width:64px; height:auto}
+
+.heart{
+  position:fixed; z-index:20; pointer-events:none; font-size:var(--s,28px);
+  animation:rise 1.6s ease-out forwards;
+}
+@keyframes rise{
+  0%{opacity:0; transform:translate(0,0) scale(.6)}
+  15%{opacity:1}
+  100%{opacity:0; transform:translate(var(--dx,0),-180px) scale(1.2)}
+}
+@media (prefers-reduced-motion: reduce){
+  .cat .tail,.cat .paw,.cat .eye{animation:none}
+  .heart{animation-duration:.01s}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mini" viewBox="0 0 120 110">
+    <path d="M18 44 L26 8 L52 28 Z" fill="var(--fur)" stroke="var(--line)" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M102 44 L94 8 L68 28 Z" fill="var(--fur)" stroke="var(--line)" stroke-width="5" stroke-linejoin="round"/>
+    <ellipse cx="60" cy="68" rx="46" ry="38" fill="var(--fur)" stroke="var(--line)" stroke-width="5"/>
+    <ellipse cx="60" cy="82" rx="22" ry="16" fill="var(--fur2)"/>
+    <ellipse cx="42" cy="62" rx="5" ry="7" fill="var(--line)"/>
+    <ellipse cx="78" cy="62" rx="5" ry="7" fill="var(--line)"/>
+    <path d="M55 74 h10 l-5 6 z" fill="var(--pink)" stroke="var(--line)" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M60 80 q-6 8 -13 3 M60 80 q6 8 13 3" fill="none" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="28" cy="76" r="7" fill="var(--pink)" opacity=".55"/>
+    <circle cx="92" cy="76" r="7" fill="var(--pink)" opacity=".55"/>
+  </symbol>
+</svg>
+
+<main>
+  <div class="paws" aria-hidden="true">
+    <span style="top:6%;left:6%;--r:-20deg">🐾</span>
+    <span style="top:14%;right:8%;--r:25deg">🐾</span>
+    <span style="top:44%;left:3%;--r:15deg">🐾</span>
+    <span style="top:58%;right:4%;--r:-25deg">🐾</span>
+    <span style="top:80%;left:10%;--r:30deg">🐾</span>
+    <span style="top:90%;right:14%;--r:-10deg">🐾</span>
+  </div>
+
+  <header>
+    <div class="sign">
+      <h1>semangat odyy!</h1>
+      <p>kamu hebat, aku bangga sama kamu</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="stage">
+      <svg class="cat" id="cat" viewBox="0 0 280 260" role="button" tabindex="0" aria-label="Kucing yang menyemangati. Sentuh untuk mengelusnya">
+        <!-- tail -->
+        <g class="tail">
+          <path d="M226 214 C270 210 276 160 252 138" fill="none" stroke="var(--line)" stroke-width="22" stroke-linecap="round"/>
+          <path d="M226 214 C270 210 276 160 252 138" fill="none" stroke="var(--fur)" stroke-width="13" stroke-linecap="round"/>
+        </g>
+        <!-- body -->
+        <path d="M70 250 C54 170 80 130 140 130 C200 130 226 170 210 250 Z" fill="var(--fur)" stroke="var(--line)" stroke-width="5" stroke-linejoin="round"/>
+        <ellipse cx="140" cy="214" rx="38" ry="36" fill="var(--fur2)"/>
+        <!-- stripes -->
+        <path d="M92 160 q10 4 14 14 M188 160 q-10 4 -14 14" fill="none" stroke="var(--line)" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+        <!-- left paw holding heart -->
+        <ellipse cx="96" cy="206" rx="17" ry="14" fill="var(--fur2)" stroke="var(--line)" stroke-width="4"/>
+        <!-- waving paw -->
+        <g class="paw">
+          <ellipse cx="196" cy="156" rx="15" ry="26" fill="var(--fur)" stroke="var(--line)" stroke-width="5" transform="rotate(-20 196 156)"/>
+          <ellipse cx="203" cy="136" rx="10" ry="9" fill="var(--fur2)" stroke="var(--line)" stroke-width="4"/>
+        </g>
+        <!-- head -->
+        <path d="M70 76 L80 22 L116 52 Z" fill="var(--fur)" stroke="var(--line)" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M210 76 L200 22 L164 52 Z" fill="var(--fur)" stroke="var(--line)" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M82 54 L86 38 L100 50 Z M198 54 L194 38 L180 50 Z" fill="var(--pink)"/>
+        <ellipse cx="140" cy="94" rx="72" ry="58" fill="var(--fur)" stroke="var(--line)" stroke-width="5"/>
+        <path d="M140 38 v18 M122 42 v12 M158 42 v12" stroke="var(--line)" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+        <ellipse cx="140" cy="114" rx="34" ry="24" fill="var(--fur2)"/>
+        <!-- happy eyes -->
+        <g class="eye"><path d="M96 92 q12 -16 24 0" fill="none" stroke="var(--line)" stroke-width="6" stroke-linecap="round"/></g>
+        <g class="eye"><path d="M160 92 q12 -16 24 0" fill="none" stroke="var(--line)" stroke-width="6" stroke-linecap="round"/></g>
+        <circle cx="86" cy="112" r="11" fill="var(--pink)" opacity=".6"/>
+        <circle cx="194" cy="112" r="11" fill="var(--pink)" opacity=".6"/>
+        <path d="M132 106 h16 l-8 9 z" fill="var(--pink)" stroke="var(--line)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M140 115 q-8 12 -20 4 M140 115 q8 12 20 4" fill="none" stroke="var(--line)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M62 104 l-34 -6 M62 114 l-36 6 M218 104 l34 -6 M218 114 l36 6" stroke="var(--line)" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- heart on belly -->
+        <path d="M140 232 C118 216 124 200 136 204 C140 206 140 208 140 208 C140 208 140 206 144 204 C156 200 162 216 140 232 Z" fill="var(--pink)" stroke="var(--line)" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <p class="hint">elus kucingnya dong 🐱</p>
+
+    <div class="msg" aria-live="polite">
+      <p class="t" id="text">Hai Odyy! Kalau hari ini terasa berat, tekan tombol di bawah ya. Ada pesan kecil dari aku dan si kucing.</p>
+      <button class="btn" id="btn" type="button">cobaa pencett 🤗</button>
+      <p class="count" id="count"></p>
+    </div>
+
+    <div class="list">
+      <div><b>🌷</b><span>semangattt magang hebat nyaaa</span></div>
+      <div><b>🍵</b><span>jangannn mendemmm semua nya sendiri yaa</span></div>
+      <div><b>💌</b><span>odyy haruss jadi hebattt tiap harii</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="cats" aria-hidden="true">
+      <svg viewBox="0 0 120 110"><use href="#mini"/></svg>
+      <svg viewBox="0 0 120 110" style="transform:scaleX(-1)"><use href="#mini"/></svg>
+      <svg viewBox="0 0 120 110"><use href="#mini"/></svg>
+    </div>
+    semangat teruss odyyy lovee uu 💗
+  </footer>
+</main>
+
+<script>
+(function(){
+  var messages = [
+    "Kamu sudah melakukan yang terbaik hari ini, dan itu cukup banget.",
+    "Capek itu boleh. Istirahat sebentar, lalu lanjut lagi pelan-pelan.",
+    "Aku percaya kamu bisa. Dari dulu juga selalu percaya.",
+    "Kalau ada yang bikin kamu sedih, ceritain ke aku ya. Aku dengerin.",
+    "Satu langkah kecil hari ini tetap kemajuan. Bangga banget sama kamu!",
+    "Kamu itu kuat, lucu, dan pintar. Jangan lupa itu ya.",
+    "Meong! Itu artinya: semangat Odyy, kamu pasti bisa!",
+    "Hari yang berat pasti lewat. Dan aku ada di sampingmu sampai lewat."
+  ];
+  var i = -1, n = 0;
+  var textEl = document.getElementById("text");
+  var countEl = document.getElementById("count");
+  var btn = document.getElementById("btn");
+  var cat = document.getElementById("cat");
+  var emojis = ["💗","💖","🐾","✨","🌸","🐱"];
+
+  function burst(x, y, k){
+    for (var j = 0; j < k; j++){
+      var h = document.createElement("span");
+      h.className = "heart";
+      h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      h.style.left = (x + (Math.random()*80-40)) + "px";
+      h.style.top = (y + (Math.random()*30-15)) + "px";
+      h.style.setProperty("--dx", (Math.random()*100-50) + "px");
+      h.style.setProperty("--s", (20 + Math.random()*20) + "px");
+      document.body.appendChild(h);
+      setTimeout(function(el){ return function(){ el.remove(); }; }(h), 1700);
+    }
+  }
+  function next(){
+    var r;
+    do { r = Math.floor(Math.random()*messages.length); } while (r === i);
+    i = r; n++;
+    textEl.textContent = messages[i];
+    countEl.textContent = n + " pelukan terkirim 💞";
+    btn.textContent = "cobaa pencett lagi 🤗";
+    var b = btn.getBoundingClientRect();
+    burst(b.left + b.width/2, b.top, 7);
+  }
+  function pet(e){
+    cat.classList.remove("purr"); void cat.getBoundingClientRect(); cat.classList.add("purr");
+    var r = cat.getBoundingClientRect();
+    burst(r.left + r.width/2, r.top + r.height*0.3, 5);
+  }
+  btn.addEventListener("click", next);
+  cat.addEventListener("click", pet);
+  cat.addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " "){ e.preventDefault(); pet(); } });
+})();
+</script>
+</body>
+</html>
